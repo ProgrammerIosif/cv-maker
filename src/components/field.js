@@ -1,26 +1,13 @@
-import React,{ Component } from 'react';
+import React,{ useState } from 'react';
 
-class Field extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: this.props.text
-    }
-    this.handleChange = this.handleChange.bind(this);
-  }
-  
-  handleChange(event) {
-    this.setState({text: event.target.value});
-  }
+const Field = (props) => {
+  const [text,handleChange] = useState(props.text)
 
-  render() {
-    return (
+  return (
       <div className='field'>
-        {this.props.mode === 'edit' ? <input type="text" value={this.state.text} onChange={this.handleChange}></input> : <p>{this.state.text}</p>}
-        {console.log(this.props.mode)}
+        {props.mode === 'edit' ? <input type="text" value={text} onChange={(event)=>handleChange(event.target.value)}></input> : <p>{text}</p>}
       </div>
-    );  
-  }
+  )
 }
 
 export default Field;
